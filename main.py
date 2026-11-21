@@ -65,7 +65,7 @@ def mark_square(row, col, player):
 	board[row][col] = player
 
 def available_square(row, col):
-	return board[row][col] == 0
+	return 0 <= row < BOARD_ROWS and 0 <= col < BOARD_COLS and board[row][col] == 0
 
 def is_board_full():
 	for row in range(BOARD_ROWS):
@@ -170,7 +170,7 @@ while True:
 			if available_square( clicked_row, clicked_col ):
 
 				mark_square( clicked_row, clicked_col, player )
-				if check_win( player ):
+				if check_win( player ) or is_board_full():
 					game_over = True
 				player = player % 2 + 1
 
